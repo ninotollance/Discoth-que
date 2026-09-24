@@ -3,7 +3,9 @@ package Application;
 import Exceptions.AuteurException;
 import Exceptions.DisqueException;
 import Exceptions.DoublonException;
+import Modele.Abstract.Album;
 import Modele.Auteur;
+import Modele.Discotheque;
 import Modele.Disque;
 
 import java.time.LocalDate;
@@ -51,6 +53,44 @@ public class Controller {
             throw new DisqueException("nom  du disque  non saisi");
         }
         return nom;
+    }
+
+    public String saisieNumero(){
+        //TODO saisie du numéro du disque
+        //TODO exception
+    }
+
+    public String saisieType(){
+        //TODO saisie du type du disque
+        //TODO exception
+    }
+
+    public int saisieTailleVinyle(){
+        //TODO saisie de la taille du disque
+        //TODO exception
+    }
+
+    public String saisieFormat(){
+        //TODO saisie du type du disque
+        //TODO exception
+    }
+
+    public double saisieTailleFichier(){
+        //TODO saisie de la taille du fichier
+        //TODO exception
+    }
+
+    public int saisieDuree(){
+        //TODO saisie de la durée du fichier
+        //TODO exception
+    }
+
+    public void ajouterAlbum(){
+        //TODO saisie des informations de l'album avec les fonctions de saisie
+        //TODO demande de la CLASSE d'Album pour appeller les bonnes fonctions de saisie
+        //TODO Création de l'entité en conséquence
+        Album created;
+        Discotheque.ajouterAlbum(created);
     }
 
     public String saisieDate() throws DisqueException {
