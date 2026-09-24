@@ -2,24 +2,53 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class GestionDisque {
-    private static ArrayList<Disque> discotheque= new ArrayList<>();
+    private static ArrayList<Disque> discotheque = new ArrayList<>();
 
 
-
-    public static void creerDisque(String n, Auteur a, LocalDate d){
-        //TODO instancier le disque
-        //TODO ajouter le disque à la discotheque
-    }
-    public static void creerDisque(Disque d){
-        //TODO ajouter le disque à la discotheque
+    public static void creerDisque(Disque d) {
+        // ajouter le disque à la discotheque
         getDiscotheque().add(d);
+        System.out.println("disque ajouté la discotheque");
     }
-    public static void supprimerDisque(String n) throws DoublonException{
-        //TODO
+
+    public static void supprimerDisqueParNom(String n) throws DoublonException {
+        int compteur =0;
+        Disque trouve=null;
+        for (Disque d : getDiscotheque()) {
+            if (d.getNom().equals(n)) {
+                trouve = d;
+                compteur++;
+            }
+        }
         //levée d'exception si supprime 2 disques
+        if(compteur>1){
+            throw new DoublonException("Doublons détectés! Utiliser l'autre suppression : choix 3");
+        }
+        else if(compteur==1) {
+            getDiscotheque().remove(trouve);
+            System.out.println("disque supprimé de la discotheque");
+        }else {
+            System.err.println("Impossible de supprimer.disque non trouvé!");
+        }
     }
-    public static void supprimerDisque(String n, Auteur a){
-        //TODO
+
+    public static void supprimerDisque(String n, Auteur a) {
+        Disque trouve = null;
+        for (Disque d : getDiscotheque()) {
+            if (d.getNom().equals(n) &&
+                    d.getAuteur().getNom().equals(a.getNom()) && d.getAuteur().getPrenom().equals(a.getPrenom())) {
+                trouve = d;
+                break;
+            }
+        }
+        if (trouve != null) {
+            System.out.println("disque trouvé:" + trouve);
+            discotheque.remove(trouve);
+            System.out.println("disque supprimé de la discotheque");
+        } else {
+            System.err.println("Impossible de supprimer.disque non trouvé!");
+        }
+
     }
 
     public static ArrayList<Disque> getDiscotheque() {
@@ -30,7 +59,11 @@ public class GestionDisque {
         GestionDisque.discotheque = discotheque;
     }
 
-    public void afficherDiscotheque(){
+    public static void afficherDiscotheque() {
         System.out.println(getDiscotheque());
+    }
+    public static void viderDiscotheque() {
+       getDiscotheque().clear();
+        System.out.println("discotheque vidée!");
     }
 }
