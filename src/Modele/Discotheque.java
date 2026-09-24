@@ -87,10 +87,9 @@ public class Discotheque {
         throw new DoublonException("Cette album exciste déjà !");
     }
 
-    public static void listerAlbum() {
+    public static void listerAlbums() throws DiscothequeVideException {
         if (getDiscotheque().isEmpty()) {
-            System.out.println("Discothèque vide !");
-            return;
+            throw new DiscothequeVideException("Discothèque vide !");
         }
         for (Album a : getDiscotheque()) {
             System.out.println(a);

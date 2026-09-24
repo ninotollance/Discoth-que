@@ -1,9 +1,6 @@
 package Application;
 
-import Exceptions.AuteurException;
-import Exceptions.DateFormatException;
-import Exceptions.DisqueException;
-import Exceptions.DoublonException;
+import Exceptions.*;
 import Modele.*;
 import Modele.Abstract.Album;
 
@@ -20,11 +17,10 @@ public class Controller {
     // Affiche le menu principal
     public void afficherMenu() {
         System.out.println("===== GESTION DE LA DISCOTHEQUE =====");
-        System.out.println("1. Ajouter un disque");
-        System.out.println("2. Supprimer un disque  par titre de l'album");
-        System.out.println("3. Supprimer un disque par Auteur et par titre de l'album");
-        System.out.println("4. Afficher le contenu de la discotheque");
-        System.out.println("5. Vider la discotheque");
+        System.out.println("1. Ajouter un album");
+        System.out.println("2. Lister tout les albums");
+        System.out.println("3. Rechercher un album");
+        System.out.println("4. Supprimer un album");
         System.out.println("0. Quitter");
     }
 
@@ -195,17 +191,29 @@ public class Controller {
                 //message erreur
         }
 
+
         Discotheque.ajouterAlbum(created);
     }
 
-    //TODO affichage de la discotheque
-    public void afficherDiscotheque() {
-      GestionDisque.afficherDiscotheque();
+    //TODO lister album
+    public void listerAlbums() throws DiscothequeVideException {
+        Discotheque.listerAlbums();
     }
 
-    //TODO vider la discotheque
-    public void viderDiscotheque() {
-        GestionDisque.viderDiscotheque();
+    //TODO suppression album
+    public void supprimerAlbumParNom() throws AlbumIntrouvableException, DiscothequeVideException, DisqueException {
+        scan.nextLine();
+        String n= saisieNomDisque();
+
+    Discotheque.supprimerAlbum(n);
     }
 
+
+
+    public void rechercherAlbum() throws DiscothequeVideException, AlbumIntrouvableException, DisqueException {
+        scan.nextLine();
+        String n= saisieNomDisque();
+
+        Discotheque.rechercherAlbum(n);
+    }
 }

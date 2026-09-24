@@ -1,7 +1,5 @@
 import Application.Controller;
-import Exceptions.AuteurException;
-import Exceptions.DisqueException;
-import Exceptions.DoublonException;
+import Exceptions.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,19 +15,16 @@ public class Main {
 
                 switch (choix) {
                     case 1:
-                        c.ajouterDisque();
+                        c.ajouterAlbum();
                         break;
                     case 2:
-                        c.supprimerDisqueParNom();
+                        c.listerAlbums();
                         break;
                     case 3:
-                        c.supprimerDisqueParAuteurEtNom();
+                        c.rechercherAlbum();
                         break;
                     case 4:
-                        c.afficherDiscotheque();
-                        break;
-                    case 5:
-                        c.viderDiscotheque();
+                        c.supprimerAlbumParNom();
                         break;
                     case 0:
                         System.out.println("Au revoir !");
@@ -39,12 +34,9 @@ public class Main {
                 }
 
                 System.out.println();
-            } catch (AuteurException e) {
-                System.err.println(e.getMessage());
-            } catch (DisqueException e) {
-                System.err.println(e.getMessage());
-            } catch (DoublonException e) {
-                System.err.println(e.getMessage());
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                System.out.println(e.getClass());
             }
 
         } while (choix != 0);
