@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class Controller {
 
-    static Scanner scan = new Scanner(System.in);
+    public static Scanner scan = new Scanner(System.in);
 
     //TODO affichage du menu
     // Affiche le menu principal
@@ -36,8 +36,8 @@ public class Controller {
         System.out.print("saisissez le prénom de l'auteur:");
         String prenom = scan.nextLine();
 
-        if (nom.isEmpty() || prenom.isEmpty()) {
-            throw new AuteurException("Nom ou prénom non saisi");
+        if (nom.isEmpty() && prenom.isEmpty()) {
+            throw new AuteurException("Il faut remplir le champ nom ou le champ prénom");
         } else {
             a = new Auteur(nom, prenom);
         }
