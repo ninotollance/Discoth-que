@@ -2,10 +2,10 @@ import java.time.LocalDate;
 
 public class Album {
 
-    private String nom;
-    private Auteur auteur;
-    private LocalDate annee;
-    private int quantite;
+    protected String nom;
+    protected Auteur auteur;
+    protected LocalDate annee;
+    protected int quantite;
 
     public Album(String nom, Auteur auteur, LocalDate annee, int quantite) {
         this.nom = nom;

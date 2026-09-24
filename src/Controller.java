@@ -1,3 +1,7 @@
+import Exceptions.AuteurException;
+import Exceptions.DisqueException;
+import Exceptions.DoublonException;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;

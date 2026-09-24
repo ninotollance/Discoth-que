@@ -1,3 +1,7 @@
+import Exceptions.AuteurException;
+import Exceptions.DisqueException;
+import Exceptions.DoublonException;
+
 public class Main {
     public static void main(String[] args) {
 
