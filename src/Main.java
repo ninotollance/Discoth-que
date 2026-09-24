@@ -34,12 +34,9 @@ public class Main {
                 }
 
                 System.out.println();
-            } catch (DiscothequeVideException e) {
-                throw new RuntimeException(e);
-            } catch (AlbumIntrouvableException e) {
-                throw new RuntimeException(e);
-            } catch (DisqueException e) {
-                throw new RuntimeException(e);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                System.out.println(e.getClass());
             }
 
         } while (choix != 0);
