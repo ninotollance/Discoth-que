@@ -71,11 +71,17 @@ public class Discotheque {
        getDiscotheque().clear();
         System.out.println("discotheque vidée!");
     }
-    ajouterAlbum(Album a) {
-
+    protected void ajouterAlbum(Album a) {
+        getDiscotheque().add(a);
+        System.out.println("Album ajouté avec succès !");
     }
-    listerAlbum() {
-
+    protected void listerAlbum() {
+        if (getDiscotheque().isEmpty()) {
+            System.out.println("Discothèque vide !");
+        }
+        for (Album a : getDiscotheque()) {
+            System.out.println(a);
+        }
     }
     rechercherAlbum() {
 
