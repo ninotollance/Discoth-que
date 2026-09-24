@@ -1,6 +1,7 @@
 package Modele;
 
-import Exceptions.DoublonException;
+import Exceptions.AlbumIntrouvableException;
+import Exceptions.DiscothequeVideException;
 import Modele.Abstract.Album;
 
 import java.util.ArrayList;
@@ -77,10 +78,23 @@ public class Discotheque {
     listerAlbum() {
 
     }
-    rechercherAlbum() {
 
+    public static Album rechercherAlbum(String nom) throws AlbumIntrouvableException, DiscothequeVideException {
+        if (getDiscotheque().isEmpty()) {
+            throw new DiscothequeVideException("La discothèque est vide.");
+        }
+        for (Album a : getDiscotheque()) {
+            if (a.getNom().equalsIgnoreCase(nom)) {
+                System.out.println("Album trouvé: " + a);
+                return a;
+            }
+        }
+        throw new AlbumIntrouvableException("Album introuvable: " + nom);
     }
-    supprimerAlbum() {
 
+    public static void supprimerAlbum(String nom) throws DiscothequeVideException, AlbumIntrouvableException {
+        Album a = rechercherAlbum(nom);
+        getDiscotheque().remove(a);
+        System.out.println("Album supprimé de la discothèque: " + a);
     }
 }
