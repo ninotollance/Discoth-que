@@ -1,3 +1,5 @@
+package Modele;
+
 public class Auteur {
 
     private String nom;

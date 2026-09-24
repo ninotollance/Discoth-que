@@ -1,4 +1,6 @@
-public class CompactDisque extends Album{
+package Modele;
+
+public class CompactDisque extends Album {
 
     private String numeroSerie;
     private String type;

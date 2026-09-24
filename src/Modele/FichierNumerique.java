@@ -1,6 +1,8 @@
+package Modele;
+
 import java.time.LocalDate;
 
-public class FichierNumerique extends Album{
+public class FichierNumerique extends Album {
 
     private String format;
     private String taille;

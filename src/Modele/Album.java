@@ -1,6 +1,8 @@
+package Modele;
+
 import java.time.LocalDate;
 
-public class Album {
+public abstract class Album {
 
     protected String nom;
     protected Auteur auteur;
