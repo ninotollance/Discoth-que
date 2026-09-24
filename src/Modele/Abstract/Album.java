@@ -1,4 +1,6 @@
-package Modele;
+package Modele.Abstract;
+
+import Modele.Auteur;
 
 import java.time.LocalDate;
 
