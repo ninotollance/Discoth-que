@@ -1,17 +1,22 @@
+package Modele;
+
 import java.time.LocalDate;
 
-public class Album {
+public class Disque {
 
-    protected String nom;
-    protected Auteur auteur;
-    protected LocalDate annee;
-    protected int quantite;
+    private String nom;
+    private Auteur auteur;
+    private LocalDate annee;
 
-    public Album(String nom, Auteur auteur, LocalDate annee, int quantite) {
+    public Disque(String nom, Auteur auteur, LocalDate annee) {
         this.nom = nom;
         this.auteur = auteur;
         this.annee = annee;
-        this.quantite = quantite;
+    }
+
+    public Disque(String nom, Auteur auteur) {
+        this.nom = nom;
+        this.auteur = auteur;
     }
 
     public String getNom() {
@@ -30,19 +35,20 @@ public class Album {
         this.auteur = auteur;
     }
 
-    public int getQuantite() {
-        return quantite;
-    }
-
-    public void setQuantite(int quantite) {
-        this.quantite = quantite;
-    }
-
     public LocalDate getAnnee() {
         return annee;
     }
 
     public void setAnnee(LocalDate annee) {
         this.annee = annee;
+    }
+
+    @Override
+    public String toString() {
+        return "disque{" +
+                "nom='" + nom + '\'' +
+                ", auteur=" + auteur +
+                ", annee=" + annee +
+                '}';
     }
 }

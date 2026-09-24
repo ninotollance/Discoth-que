@@ -1,6 +1,10 @@
+package Application;
+
 import Exceptions.AuteurException;
 import Exceptions.DisqueException;
 import Exceptions.DoublonException;
+import Modele.Auteur;
+import Modele.Disque;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

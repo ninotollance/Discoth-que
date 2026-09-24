@@ -1,6 +1,10 @@
+package Modele;
+
+import Modele.Abstract.Album;
+
 import java.time.LocalDate;
 
-public class DisqueVinyle extends Album{
+public class DisqueVinyle extends Album {
 
     private String numeroSerie;
     private String type;

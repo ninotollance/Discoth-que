@@ -1,4 +1,8 @@
-public class CompactDisque extends Album{
+package Modele;
+
+import Modele.Abstract.Album;
+
+public class CompactDisque extends Album {
 
     private String numeroSerie;
     private String type;

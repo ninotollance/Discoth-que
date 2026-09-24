@@ -1,4 +1,8 @@
+package Application;
+
 import Exceptions.DoublonException;
+import Modele.Auteur;
+import Modele.Disque;
 
 import java.util.ArrayList;
 
