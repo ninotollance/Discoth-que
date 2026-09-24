@@ -8,9 +8,9 @@ public class FichierNumerique extends Album {
 
     private String format;
     private String taille;
-    private String duree;
+    private int duree;
 
-    public FichierNumerique(String nom, Auteur auteur, LocalDate annee, int quantite, String format, String taille, String duree) {
+    public FichierNumerique(String nom, Auteur auteur, LocalDate annee, int quantite, String format, String taille, int duree) {
         super(nom, auteur, annee, quantite);
         this.format = format;
         this.taille = taille;
@@ -33,11 +33,11 @@ public class FichierNumerique extends Album {
         this.taille = taille;
     }
 
-    public String getDuree() {
+    public int getDuree() {
         return duree;
     }
 
-    public void setDuree(String duree) {
+    public void setDuree(int duree) {
         this.duree = duree;
     }
 }

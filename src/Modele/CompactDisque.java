@@ -4,21 +4,21 @@ import Modele.Abstract.Album;
 
 public class CompactDisque extends Album {
 
-    private String numeroSerie;
+    private String numero;
     private String type;
 
-    public CompactDisque(String nom, Auteur auteur, java.time.LocalDate annee, int quantite, String numeroSerie, String type) {
+    public CompactDisque(String nom, Auteur auteur, java.time.LocalDate annee, int quantite, String numero, String type) {
         super(nom, auteur, annee, quantite);
-        this.numeroSerie = numeroSerie;
+        this.numero = numero;
         this.type = type;
     }
 
-    public String getNumeroSerie() {
-        return numeroSerie;
+    public String getNumero() {
+        return numero;
     }
 
-    public void setNumeroSerie(String numeroSerie) {
-        this.numeroSerie = numeroSerie;
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
     public String getType() {
