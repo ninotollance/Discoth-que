@@ -1,8 +1,6 @@
 package Application;
 
-import Exceptions.AuteurException;
-import Exceptions.DateFormatException;
-import Exceptions.DoublonException;
+import Exceptions.*;
 import Modele.Abstract.Album;
 import Modele.Auteur;
 import Modele.CompactDisque;
@@ -22,11 +20,10 @@ public class Controller {
     // Affiche le menu principal
     public void afficherMenu() {
         System.out.println("===== GESTION DE LA DISCOTHEQUE =====");
-        System.out.println("1. Ajouter un disque");
-        System.out.println("2. Supprimer un disque  par titre de l'album");
-        System.out.println("3. Supprimer un disque par Auteur et par titre de l'album");
-        System.out.println("4. Afficher le contenu de la discotheque");
-        System.out.println("5. Vider la discotheque");
+        System.out.println("1. Ajouter un album");
+        System.out.println("2. Lister tout les albums");
+        System.out.println("3. Rechercher un album");
+        System.out.println("4. Supprimer un album");
         System.out.println("0. Quitter");
     }
 
@@ -125,10 +122,11 @@ public class Controller {
         System.out.println("Type d'album (1 = CD, 2 = Vinyle, 3 = Fichier numérique) : ");
         int choix = scan.nextInt();
         scan.nextLine();
+        Album created;
 
         switch (choix) {
             case 1:
-                //création CD
+               created = creerCD();
                 break;
             case 2:
                 //création vinyle
@@ -141,42 +139,18 @@ public class Controller {
         }
 
 
-
-
-
-
-
-
-        Album created;
         Discotheque.ajouterAlbum(created);
     }
 
-    //TODO ajout disque
-    public void ajouterDisque() throws AuteurException, DisqueException {
-        Auteur a = saisieAuteur();
-        LocalDate dateDisque = LocalDate.now();
-        String nomD = saisieNomDisque();
-        LocalDate dateD = saisieDate();
-        try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            dateDisque = LocalDate.parse(dateD, formatter);
-            Disque d = new Disque(nomD, a, dateDisque);
-            GestionDisque.creerDisque(d);
-        } catch (DateTimeParseException e) {
-            System.err.println("Format invalide. exemple : 22/09/2026");
-        }
-    }
+    //TODO lister album
+    public void listerAlbums
 
-    //TODO suppression disque
-    public void supprimerDisqueParAuteurEtNom() throws AuteurException, DisqueException {
-    Auteur a =saisieAuteur();
-    String n= saisieNomDisque();
-    GestionDisque.supprimerDisque(n,a);
-    }
-    public void supprimerDisqueParNom() throws AuteurException, DisqueException, DoublonException {
+    //TODO suppression album
+    public void supprimerAlbumParNom() throws AlbumIntrouvableException, DiscothequeVideException, DisqueException {
         scan.nextLine();
         String n= saisieNomDisque();
-        GestionDisque.supprimerDisqueParNom(n);
+
+    Discotheque.supprimerAlbum(n);
     }
 
     //TODO affichage de la discotheque
