@@ -1,10 +1,11 @@
 package Application;
 
 import Exceptions.AuteurException;
-import Exceptions.DisqueException;
+import Exceptions.DateFormatException;
 import Exceptions.DoublonException;
 import Modele.Abstract.Album;
 import Modele.Auteur;
+import Modele.CompactDisque;
 import Modele.Discotheque;
 import Modele.Disque;
 
@@ -85,21 +86,69 @@ public class Controller {
         //TODO exception
     }
 
+    public int saisieQuantite(){
+        //TODO saisie de la quantite
+        //TODO exception
+    }
+
+    public LocalDate saisieDate() throws DateFormatException {
+        System.out.println("Saisissez la date de publication au format dd/mm/yyyy");
+        String date = scan.nextLine();
+        if(!date.matches("^\d{2}/\d{2}/\d{4}$")){
+            throw new DateFormatException("La date n'est pas au format dd/mm/yyyy");
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        return LocalDate.parse(date, formatter);
+    }
+
+    public CompactDisque creerCD () throws AuteurException, DoublonException {
+        Auteur a = saisieAuteur();
+        String nom = saisieNomDisque();
+        LocalDate date = saisieDate();
+        int quantite = saisieQuantite();
+        String numero = saisieNumero();
+        String type = saisieType();
+
+        try {
+            CompactDisque cd = new CompactDisque(nom, a, date, quantite, numero, type );
+            Discotheque.ajouterAlbum(cd);
+        } catch (DoublonException e) {
+            System.out.println("Album déjà existant ");
+        }
+    }
+
     public void ajouterAlbum(){
         //TODO saisie des informations de l'album avec les fonctions de saisie
         //TODO demande de la CLASSE d'Album pour appeller les bonnes fonctions de saisie
         //TODO Création de l'entité en conséquence
+        System.out.println("Type d'album (1 = CD, 2 = Vinyle, 3 = Fichier numérique) : ");
+        int choix = scan.nextInt();
+        scan.nextLine();
+
+        switch (choix) {
+            case 1:
+                //création CD
+                break;
+            case 2:
+                //création vinyle
+                break;
+            case 3:
+                //création fichier numérique
+                break;
+            default:
+                //message erreur
+        }
+
+
+
+
+
+
+
+
         Album created;
         Discotheque.ajouterAlbum(created);
-    }
-
-    public String saisieDate() throws DisqueException {
-        System.out.print("saisissez la date du disque (jj/mm/aaaa):");
-        String dateD = scan.nextLine();
-        if (dateD.isEmpty()) {
-            throw new DisqueException("date du disque  non saisie");
-        }
-        return dateD;
     }
 
     //TODO ajout disque
@@ -107,7 +156,7 @@ public class Controller {
         Auteur a = saisieAuteur();
         LocalDate dateDisque = LocalDate.now();
         String nomD = saisieNomDisque();
-        String dateD = saisieDate();
+        LocalDate dateD = saisieDate();
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             dateDisque = LocalDate.parse(dateD, formatter);

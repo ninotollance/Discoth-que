@@ -2,6 +2,7 @@ package Modele;
 
 import Exceptions.AlbumIntrouvableException;
 import Exceptions.DiscothequeVideException;
+import Exceptions.DoublonException;
 import Modele.Abstract.Album;
 
 import java.util.ArrayList;
@@ -72,13 +73,28 @@ public class Discotheque {
        getDiscotheque().clear();
         System.out.println("discotheque vidée!");
     }
-    public static void ajouterAlbum(Album a) {
+    public static void ajouterAlbum(Album a) throws DoublonException {
         //TODO vérification si l'album existe déjà dans la discotheque et exception si c'est le cas
         //TODO ajouter album dans discotheque
+        try {
+            rechercherAlbum(a.getNom());
+
+        } catch (DiscothequeVideException | AlbumIntrouvableException e) {
+            discotheque.add(a);
+            System.out.println("Album ajouté avec succès");
+            return;
+        }
+        throw new DoublonException("Cette album exciste déjà !");
     }
 
-    listerAlbum() {
-
+    public static void listerAlbum() {
+        if (getDiscotheque().isEmpty()) {
+            System.out.println("Discothèque vide !");
+            return;
+        }
+        for (Album a : getDiscotheque()) {
+            System.out.println(a);
+        }
     }
 
     public static Album rechercherAlbum(String nom) throws AlbumIntrouvableException, DiscothequeVideException {
