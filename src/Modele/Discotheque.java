@@ -65,10 +65,10 @@ public class Discotheque {
     public static void setDiscotheque(ArrayList<Album> discotheque) {
         Discotheque.discotheque = discotheque;
     }
-    
+
 
     protected void ajouterAlbum(Album a) throws DoublonException {
-        if (getDiscotheque().contains(a)) {
+        if (getDiscotheque().) {
             throw new DoublonException("L'album existe déjà !");
         }
         getDiscotheque().add(a);
