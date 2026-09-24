@@ -66,15 +66,28 @@ public class Discotheque {
         Discotheque.discotheque = discotheque;
     }
 
-
-    protected void ajouterAlbum(Album a) throws DoublonException {
-        if (getDiscotheque().) {
-            throw new DoublonException("L'album existe déjà !");
-        }
-        getDiscotheque().add(a);
-        System.out.println("Album ajouté avec succès !");
+    public static void afficherDiscotheque() {
+        System.out.println(getDiscotheque());
     }
-    protected void listerAlbum() {
+    public static void viderDiscotheque() {
+       getDiscotheque().clear();
+        System.out.println("discotheque vidée!");
+    }
+    public static void ajouterAlbum(Album a) throws DoublonException {
+        //TODO vérification si l'album existe déjà dans la discotheque et exception si c'est le cas
+        //TODO ajouter album dans discotheque
+        try {
+            rechercherAlbum(a.getNom());
+
+        } catch (DiscothequeVideException | AlbumIntrouvableException e) {
+            discotheque.add(a);
+            System.out.println("Album ajouté avec succès");
+            return;
+        }
+        throw new DoublonException("Cette album exciste déjà !");
+    }
+
+    public static void listerAlbum() {
         if (getDiscotheque().isEmpty()) {
             System.out.println("Discothèque vide !");
             return;
