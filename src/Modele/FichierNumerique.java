@@ -1,5 +1,7 @@
 package Modele;
 
+import Modele.Abstract.Album;
+
 import java.time.LocalDate;
 
 public class FichierNumerique extends Album {
