@@ -72,9 +72,11 @@ public class Discotheque {
        getDiscotheque().clear();
         System.out.println("discotheque vidée!");
     }
-    ajouterAlbum(Album a) {
-
+    public static void ajouterAlbum(Album a) {
+        //TODO vérification si l'album existe déjà dans la discotheque et exception si c'est le cas
+        //TODO ajouter album dans discotheque
     }
+
     listerAlbum() {
 
     }
