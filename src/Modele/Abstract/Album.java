@@ -34,6 +34,14 @@ public abstract class Album {
         this.auteur = auteur;
     }
 
+    public LocalDate getAnnee() {
+        return annee;
+    }
+
+    public void setAnnee(LocalDate annee) {
+        this.annee = annee;
+    }
+
     public int getQuantite() {
         return quantite;
     }
@@ -42,11 +50,13 @@ public abstract class Album {
         this.quantite = quantite;
     }
 
-    public LocalDate getAnnee() {
-        return annee;
-    }
-
-    public void setAnnee(LocalDate annee) {
-        this.annee = annee;
+    @Override
+    public String toString() {
+        return "Album{" +
+                "nom='" + nom + '\'' +
+                ", auteur=" + auteur +
+                ", annee=" + annee +
+                ", quantite=" + quantite +
+                '}';
     }
 }
