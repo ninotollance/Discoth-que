@@ -6,28 +6,28 @@ import java.time.LocalDate;
 
 public class DisqueVinyle extends Album {
 
-    private String numeroSerie;
-    private String type;
+    private String numero;
+    private int type;
 
-    public DisqueVinyle(String nom, Auteur auteur, LocalDate annee, int quantite, String numeroSerie, String type) {
+    public DisqueVinyle(String nom, Auteur auteur, LocalDate annee, int quantite, String numero, int type) {
         super(nom, auteur, annee, quantite);
-        this.numeroSerie = numeroSerie;
+        this.numero = numero;
         this.type = type;
     }
 
-    public String getNumeroSerie() {
-        return numeroSerie;
+    public String getNumero() {
+        return numero;
     }
 
-    public void setNumeroSerie(String numeroSerie) {
-        this.numeroSerie = numeroSerie;
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
 }
