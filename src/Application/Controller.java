@@ -2,12 +2,10 @@ package Application;
 
 import Exceptions.AuteurException;
 import Exceptions.DateFormatException;
+import Exceptions.DisqueException;
 import Exceptions.DoublonException;
+import Modele.*;
 import Modele.Abstract.Album;
-import Modele.Auteur;
-import Modele.CompactDisque;
-import Modele.Discotheque;
-import Modele.Disque;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -48,53 +46,85 @@ public class Controller {
     }
 
     public String saisieNomDisque() throws DisqueException {
-        System.out.print("saisissez le nom du disque:");
+        System.out.print("saisissez le nom de l'album:");
         String nom = scan.nextLine();
         if (nom.isEmpty()) {
-            throw new DisqueException("nom  du disque  non saisi");
+            throw new DisqueException("nom  de l'album  non saisi");
         }
         return nom;
     }
 
-    public String saisieNumero(){
-        //TODO saisie du numéro du disque
-        //TODO exception
+    public String saisieNumero() throws DisqueException {
+        System.out.print("saisissez le numéro de série de l'album:");
+        String numero = scan.nextLine();
+        if (numero.isEmpty()) {
+            throw new DisqueException("numéro de série de l'album  non saisi");
+        }
+        return numero;
     }
 
-    public String saisieType(){
-        //TODO saisie du type du disque
-        //TODO exception
+    public String saisieType() throws DisqueException {
+        System.out.print("saisissez le type de l'album:");
+        String type = scan.nextLine();
+        if (type.isEmpty()) {
+            throw new DisqueException("type de l'album  non saisi");
+        }
+        return type;
     }
 
-    public int saisieTailleVinyle(){
-        //TODO saisie de la taille du disque
-        //TODO exception
+    public int saisieTailleVinyle() throws DisqueException {
+        System.out.print("saisissez le nom de l'album:");
+        int taille = scan.nextInt();
+        scan.nextLine();
+        if (taille != 33 && taille != 45) {
+            throw new DisqueException("Taille du vinyle non valide, doit être 33 ou 45");
+        }
+        return taille;
     }
 
-    public String saisieFormat(){
-        //TODO saisie du type du disque
-        //TODO exception
+    public String saisieFormat() throws DisqueException {
+        System.out.print("saisissez le format de l'album:");
+        String format = scan.nextLine();
+        if (format.isEmpty()) {
+            throw new DisqueException("format de l'album  non saisi");
+        }
+        return format;
     }
 
-    public double saisieTailleFichier(){
-        //TODO saisie de la taille du fichier
-        //TODO exception
+    public double saisieTailleFichier() throws DisqueException {
+        System.out.print("saisissez la taille du fichier (en MO):");
+        double taille = scan.nextDouble();
+        scan.nextLine();
+        if (taille <= 0) {
+            throw new DisqueException("taille de l'album  non saisi");
+        }
+        return taille;
     }
 
-    public int saisieDuree(){
-        //TODO saisie de la durée du fichier
-        //TODO exception
+    public int saisieDuree() throws DisqueException {
+        System.out.print("saisissez la durée de l'album (en min):");
+        int duree = scan.nextInt();
+        scan.nextLine();
+        if (duree < 0) {
+            throw new DisqueException("durée l'album  non saisi");
+        }
+        return duree;
     }
 
-    public int saisieQuantite(){
-        //TODO saisie de la quantite
-        //TODO exception
+    public int saisieQuantite() throws DisqueException {
+        System.out.print("saisissez le nombre de disques/fichiers de l'album:");
+        int duree = scan.nextInt();
+        scan.nextLine();
+        if (duree <= 0) {
+            throw new DisqueException("L'album ne peut pas avoir une quantité nulle ou négative");
+        }
+        return duree;
     }
 
     public LocalDate saisieDate() throws DateFormatException {
         System.out.println("Saisissez la date de publication au format dd/mm/yyyy");
         String date = scan.nextLine();
-        if(!date.matches("^\d{2}/\d{2}/\d{4}$")){
+        if(!date.matches("^\\d{2}/\\d{2}/\\d{4}$")){
             throw new DateFormatException("La date n'est pas au format dd/mm/yyyy");
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -102,7 +132,7 @@ public class Controller {
         return LocalDate.parse(date, formatter);
     }
 
-    public CompactDisque creerCD () throws AuteurException, DoublonException {
+    public CompactDisque creerCD () throws AuteurException, DoublonException, DisqueException {
         Auteur a = saisieAuteur();
         String nom = saisieNomDisque();
         LocalDate date = saisieDate();
@@ -110,15 +140,39 @@ public class Controller {
         String numero = saisieNumero();
         String type = saisieType();
 
-        try {
-            CompactDisque cd = new CompactDisque(nom, a, date, quantite, numero, type );
-            Discotheque.ajouterAlbum(cd);
-        } catch (DoublonException e) {
-            System.out.println("Album déjà existant ");
-        }
+
+        CompactDisque cd = new CompactDisque(nom, a, date, quantite, numero, type );
+        return cd;
     }
 
-    public void ajouterAlbum(){
+    public FichierNumerique creerFichierNumerique () throws AuteurException, DoublonException, DisqueException {
+        Auteur a = saisieAuteur();
+        String nom = saisieNomDisque();
+        LocalDate date = saisieDate();
+        int quantite = saisieQuantite();
+        String format = saisieFormat();
+        double taille = saisieTailleFichier();
+        int duree = saisieDuree();
+
+
+        FichierNumerique fichierNumerique = new FichierNumerique(nom, a, date, quantite, format, taille, duree );
+        return fichierNumerique;
+    }
+
+    public DisqueVinyle creerDisqueVinyle () throws AuteurException, DoublonException, DisqueException {
+        Auteur a = saisieAuteur();
+        String nom = saisieNomDisque();
+        LocalDate date = saisieDate();
+        int quantite = saisieQuantite();
+        int taille = saisieTailleVinyle();
+        String numero = saisieNumero();
+
+
+        DisqueVinyle disqueVinyle = new DisqueVinyle(nom, a, date, quantite, numero, taille);
+        return disqueVinyle;
+    }
+
+    public void ajouterAlbum() throws AuteurException, DisqueException, DoublonException {
         //TODO saisie des informations de l'album avec les fonctions de saisie
         //TODO demande de la CLASSE d'Album pour appeller les bonnes fonctions de saisie
         //TODO Création de l'entité en conséquence
@@ -126,57 +180,22 @@ public class Controller {
         int choix = scan.nextInt();
         scan.nextLine();
 
+        Album created = null;
         switch (choix) {
             case 1:
-                //création CD
+                created = creerCD();
                 break;
             case 2:
-                //création vinyle
+                created = creerDisqueVinyle();
                 break;
             case 3:
-                //création fichier numérique
+                created = creerFichierNumerique();
                 break;
             default:
                 //message erreur
         }
 
-
-
-
-
-
-
-
-        Album created;
         Discotheque.ajouterAlbum(created);
-    }
-
-    //TODO ajout disque
-    public void ajouterDisque() throws AuteurException, DisqueException {
-        Auteur a = saisieAuteur();
-        LocalDate dateDisque = LocalDate.now();
-        String nomD = saisieNomDisque();
-        LocalDate dateD = saisieDate();
-        try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            dateDisque = LocalDate.parse(dateD, formatter);
-            Disque d = new Disque(nomD, a, dateDisque);
-            GestionDisque.creerDisque(d);
-        } catch (DateTimeParseException e) {
-            System.err.println("Format invalide. exemple : 22/09/2026");
-        }
-    }
-
-    //TODO suppression disque
-    public void supprimerDisqueParAuteurEtNom() throws AuteurException, DisqueException {
-    Auteur a =saisieAuteur();
-    String n= saisieNomDisque();
-    GestionDisque.supprimerDisque(n,a);
-    }
-    public void supprimerDisqueParNom() throws AuteurException, DisqueException, DoublonException {
-        scan.nextLine();
-        String n= saisieNomDisque();
-        GestionDisque.supprimerDisqueParNom(n);
     }
 
     //TODO affichage de la discotheque
