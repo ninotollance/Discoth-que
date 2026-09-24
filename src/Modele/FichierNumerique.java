@@ -7,10 +7,10 @@ import java.time.LocalDate;
 public class FichierNumerique extends Album {
 
     private String format;
-    private String taille;
+    private double taille;
     private int duree;
 
-    public FichierNumerique(String nom, Auteur auteur, LocalDate annee, int quantite, String format, String taille, int duree) {
+    public FichierNumerique(String nom, Auteur auteur, LocalDate annee, int quantite, String format, double taille, int duree) {
         super(nom, auteur, annee, quantite);
         this.format = format;
         this.taille = taille;
@@ -25,11 +25,11 @@ public class FichierNumerique extends Album {
         this.format = format;
     }
 
-    public String getTaille() {
+    public double getTaille() {
         return taille;
     }
 
-    public void setTaille(String taille) {
+    public void setTaille(double taille) {
         this.taille = taille;
     }
 
