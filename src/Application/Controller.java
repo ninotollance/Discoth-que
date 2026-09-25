@@ -33,8 +33,8 @@ public class Controller {
         System.out.print("saisissez le prénom de l'auteur:");
         String prenom = scan.nextLine();
 
-        if (nom.isEmpty() && prenom.isEmpty()) {
-            throw new SaisieInvalideException("Il faut remplir le champ nom ou le champ prénom");
+        if (nom.isEmpty()) {
+            throw new SaisieInvalideException("Il faut remplir le champ nom");
         } else {
             a = new Auteur(nom, prenom);
         }
