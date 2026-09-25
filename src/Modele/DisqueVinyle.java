@@ -33,7 +33,7 @@ public class DisqueVinyle extends Album {
 
     @Override
     public String toString() {
-        return  "Le vinyle " +  type + " tours "  + super.toString();
+        return  this.getSupport() + " " + numero + type + super.toString() ;
         /**return "Album{" +
                 "nom='" + nom + '\'' +
                 ", auteur=" + auteur +

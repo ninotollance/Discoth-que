@@ -47,7 +47,7 @@ public class FichierNumerique extends Album {
 
     @Override
     public String toString() {
-        return  "Le vinyle tours "  + super.toString();
+        return  this.getSupport() + super.toString();
         /**return "Album{" +
          "nom='" + nom + '\'' +
          ", auteur=" + auteur +
