@@ -37,7 +37,7 @@ public class CompactDisque extends Album {
 
     @Override
     public String toString() {
-        return this.getSupport() + super.toString();
+        return this.getSupport() + " " + this.getNumero() + " " + this.getType() + " " + super.toString();
         /**return "Album{" +
          "nom='" + nom + '\'' +
          ", auteur=" + auteur +
