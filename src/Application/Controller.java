@@ -75,7 +75,6 @@ public class Controller {
         int taille = scan.nextInt();
         scan.nextLine();
         if (taille != 17 && taille != 25 && taille != 30) {
-            scan.nextLine();
             throw new SaisieInvalideException("Taille du vinyle non valide, doit être 17, 25 ou 30");
         }
         return taille;
@@ -98,7 +97,6 @@ public class Controller {
         double taille = scan.nextDouble();
         scan.nextLine();
         if (taille <= 0) {
-            scan.nextLine();
             throw new SaisieInvalideException("taille du fichier  non saisi");
         }
         return taille;
@@ -109,7 +107,6 @@ public class Controller {
         int duree = scan.nextInt();
         scan.nextLine();
         if (duree < 0) {
-            scan.nextLine();
             throw new SaisieInvalideException("durée du fichier non saisi");
         }
         return duree;
@@ -120,7 +117,6 @@ public class Controller {
         int duree = scan.nextInt();
         scan.nextLine();
         if (duree <= 0) {
-            scan.nextLine();
             throw new SaisieInvalideException("L'album ne peut pas avoir une quantité nulle ou négative");
         }
         return duree;
