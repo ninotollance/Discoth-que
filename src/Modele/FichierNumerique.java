@@ -41,6 +41,10 @@ public class FichierNumerique extends Album {
         this.duree = duree;
     }
 
+    public String getSupport() {
+        return "Fichier Numérique";
+    }
+
     @Override
     public String toString() {
         return  "Le vinyle tours "  + super.toString();

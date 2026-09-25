@@ -50,6 +50,8 @@ public abstract class Album {
         this.quantite = quantite;
     }
 
+    public abstract String getSupport();
+
     @Override
     public String toString() {
         return nom + " de " + auteur + " sortie en " + annee + " avec " + quantite + " titre ";
