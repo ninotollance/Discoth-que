@@ -1,11 +1,14 @@
 import Application.Controller;
 import Exceptions.*;
 
+import java.time.DateTimeException;
+import java.util.InputMismatchException;
+
 public class Main {
     public static void main(String[] args) {
 
         Controller c = new Controller();
-        int choix = 0;
+        int choix = -1;
 
         do {
             try {
@@ -34,9 +37,12 @@ public class Main {
                 }
 
                 System.out.println();
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-                System.out.println(e.getClass());
+            } catch (DiscothequeVideException | SaisieInvalideException | DoublonException | AlbumIntrouvableException | DateFormatException |
+                     DateTimeException e) {
+                System.out.println("Erreur: "+ e.getMessage() + " (" + e.getClass().getSimpleName() + ")");
+            } catch (InputMismatchException e){
+                System.out.println("Erreur: " + e.getClass().getSimpleName());
+                Controller.scan.nextLine();
             }
 
         } while (choix != 0);
