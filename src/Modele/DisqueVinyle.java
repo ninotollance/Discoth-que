@@ -7,12 +7,12 @@ import java.time.LocalDate;
 public class DisqueVinyle extends Album {
 
     private String numero;
-    private int type;
+    private int taille;
 
-    public DisqueVinyle(String nom, Auteur auteur, LocalDate annee, int quantite, String numero, int type) {
+    public DisqueVinyle(String nom, Auteur auteur, LocalDate annee, int quantite, String numero, int taille) {
         super(nom, auteur, annee, quantite);
         this.numero = numero;
-        this.type = type;
+        this.taille = taille;
     }
 
     public String getNumero() {
@@ -23,17 +23,17 @@ public class DisqueVinyle extends Album {
         this.numero = numero;
     }
 
-    public int getType() {
-        return type;
+    public int getTaille() {
+        return taille;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public void setTaille(int taille) {
+        this.taille = taille;
     }
 
     @Override
     public String toString() {
-        return  "Le vinyle " +  type + " tours "  + super.toString();
+        return  this.getSupport() + " " + this.getNumero() + " " + this.getTaille() + " cm " + super.toString() ;
         /**return "Album{" +
                 "nom='" + nom + '\'' +
                 ", auteur=" + auteur +

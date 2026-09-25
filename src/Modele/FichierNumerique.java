@@ -44,4 +44,15 @@ public class FichierNumerique extends Album {
     public String getSupport() {
         return "Fichier Numérique";
     }
+
+    @Override
+    public String toString() {
+        return  this.getSupport() + " " + this.getFormat() + " " + this.getTaille() + " Mo " + this.getDuree() + " min " + super.toString();
+        /**return "Album{" +
+         "nom='" + nom + '\'' +
+         ", auteur=" + auteur +
+         ", annee=" + annee +
+         ", quantite=" + quantite +
+         '}';*/
+    }
 }
