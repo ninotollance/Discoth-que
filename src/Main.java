@@ -37,7 +37,7 @@ public class Main {
                 }
 
                 System.out.println();
-            } catch (DiscothequeVideException | AuteurException | AlbumException | DoublonException | AlbumIntrouvableException | DateFormatException |
+            } catch (DiscothequeVideException | SaisieInvalideException | DoublonException | AlbumIntrouvableException | DateFormatException |
                      DateTimeException e) {
                 System.out.println("Erreur: "+ e.getMessage() + " (" + e.getClass().getSimpleName() + ")");
             } catch (InputMismatchException e){

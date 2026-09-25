@@ -23,7 +23,7 @@ public class Controller {
         System.out.println("0. Quitter");
     }
 
-    public Auteur saisieAuteur() throws AuteurException {
+    public Auteur saisieAuteur() throws SaisieInvalideException {
         Auteur a;
         scan.nextLine();
 
@@ -33,92 +33,95 @@ public class Controller {
         String prenom = scan.nextLine();
 
         if (nom.isEmpty() && prenom.isEmpty()) {
-            throw new AuteurException("Il faut remplir le champ nom ou le champ prénom");
+            throw new SaisieInvalideException("Il faut remplir le champ nom ou le champ prénom");
         } else {
             a = new Auteur(nom, prenom);
         }
         return a;
     }
 
-    public String saisieNomDisque() throws AlbumException {
+    public String saisieNomDisque() throws SaisieInvalideException {
         System.out.print("saisissez le nom de l'album:");
         String nom = scan.nextLine();
         if (nom.isEmpty()) {
-            throw new AlbumException("nom  de l'album  non saisi");
+            throw new SaisieInvalideException("nom  de l'album  non saisi");
         }
         return nom;
     }
 
-    public String saisieNumero() throws AlbumException {
+    public String saisieNumero() throws SaisieInvalideException {
         System.out.print("saisissez le numéro de série de l'album:");
         String numero = scan.nextLine();
         if (numero.isEmpty()) {
-            throw new AlbumException("numéro de série de l'album  non saisi");
+            throw new SaisieInvalideException("numéro de série de l'album  non saisi");
         }
         return numero;
     }
 
-    public String saisieType() throws AlbumException {
-        System.out.print("saisissez le type du CD:");
+    public String saisieType() throws SaisieInvalideException {
+        System.out.print("saisissez le type du CD (Simple ou Double):");
         String type = scan.nextLine();
         if (type.isEmpty()) {
-            throw new AlbumException("type du CD  non saisi");
+            throw new SaisieInvalideException("type du CD  non saisi");
+        }
+        if (!type.equalsIgnoreCase("Simple") && !type.equalsIgnoreCase("Double")) {
+            throw new SaisieInvalideException("Type du CD non valide, doit être Simple ou Double");
         }
         return type;
     }
 
-    public int saisieTailleVinyle() throws AlbumException {
-        System.out.print("saisissez le nom de l'album:");
+    public int saisieTailleVinyle() throws SaisieInvalideException {
+        System.out.print("saisissez la taille du vinyle (17, 25 ou 30):");
         int taille = scan.nextInt();
         scan.nextLine();
-        if (taille != 33 && taille != 45) {
+        if (taille != 17 && taille != 25 && taille != 30) {
             scan.nextLine();
-            throw new AlbumException("Taille du vinyle non valide, doit être 33 ou 45");
+            throw new SaisieInvalideException("Taille du vinyle non valide, doit être 17, 25 ou 30");
         }
         return taille;
     }
 
-    public String saisieFormat() throws AlbumException {
-        System.out.print("saisissez le format du fichier:");
+    public String saisieFormat() throws SaisieInvalideException {
+        System.out.print("saisissez le format du fichier (mp3, flac, wav):");
         String format = scan.nextLine();
         if (format.isEmpty()) {
-            throw new AlbumException("format de fichier non saisi");
+            throw new SaisieInvalideException("format de fichier non saisi");
         }
         if (!format.equalsIgnoreCase("mp3") && !format.equalsIgnoreCase("flac") && !format.equalsIgnoreCase("wav")) {
-            throw new AlbumException("Format de fichier non valide, doit être mp3, flac ou wav");
+            throw new SaisieInvalideException("Format de fichier non valide, doit être mp3, flac ou wav");
         }
         return format;
     }
 
-    public double saisieTailleFichier() throws AlbumException {
+    public double saisieTailleFichier() throws SaisieInvalideException {
         System.out.print("saisissez la taille du fichier (en MO):");
         double taille = scan.nextDouble();
         scan.nextLine();
         if (taille <= 0) {
             scan.nextLine();
-            throw new AlbumException("taille de l'album  non saisi");
+            throw new SaisieInvalideException("taille du fichier  non saisi");
         }
         return taille;
     }
 
-    public int saisieDuree() throws AlbumException {
-        System.out.print("saisissez la durée de l'album (en min):");
+    public int saisieDuree() throws SaisieInvalideException {
+        System.out.print("saisissez la durée du fichier (en min):");
         int duree = scan.nextInt();
         scan.nextLine();
         if (duree < 0) {
             scan.nextLine();
-            throw new AlbumException("durée l'album  non saisi");
+            throw new SaisieInvalideException("durée du fichier non saisi");
         }
         return duree;
     }
 
-    public int saisieQuantite() throws AlbumException {
+    public int saisieQuantite() throws SaisieInvalideException {
         System.out.print("saisissez le nombre de disques/fichiers de l'album:");
         int duree = scan.nextInt();
         scan.nextLine();
         if (duree <= 0) {
             scan.nextLine();
-            throw new AlbumException("L'album ne peut pas avoir une quantité nulle ou négative");
+            throw new SaisieInvalideException("L'album ne peut pas avoir une quantité nulle ou négative");
         }
         return duree;
     }
@@ -134,7 +137,7 @@ public class Controller {
         return LocalDate.parse(date, formatter);
     }
 
-    public CompactDisque creerCD () throws AuteurException, AlbumException {
+    public CompactDisque creerCD () throws SaisieInvalideException {
         Auteur a = saisieAuteur();
         String nom = saisieNomDisque();
         LocalDate date = saisieDate();
@@ -147,7 +150,7 @@ public class Controller {
         return cd;
     }
 
-    public FichierNumerique creerFichierNumerique () throws AuteurException, AlbumException {
+    public FichierNumerique creerFichierNumerique () throws SaisieInvalideException {
         Auteur a = saisieAuteur();
         String nom = saisieNomDisque();
         LocalDate date = saisieDate();
@@ -161,7 +164,7 @@ public class Controller {
         return fichierNumerique;
     }
 
-    public DisqueVinyle creerDisqueVinyle () throws AuteurException, AlbumException {
+    public DisqueVinyle creerDisqueVinyle () throws SaisieInvalideException {
         Auteur a = saisieAuteur();
         String nom = saisieNomDisque();
         LocalDate date = saisieDate();
@@ -174,7 +177,7 @@ public class Controller {
         return disqueVinyle;
     }
 
-    public void ajouterAlbum() throws AuteurException, AlbumException, DoublonException {
+    public void ajouterAlbum() throws SaisieInvalideException, DoublonException {
         System.out.println("Type d'album (1 = CD, 2 = Vinyle, 3 = Fichier numérique) : ");
         int choix = scan.nextInt();
 
@@ -203,7 +206,7 @@ public class Controller {
     }
 
     //TODO suppression album
-    public void supprimerAlbumParNom() throws AlbumIntrouvableException, DiscothequeVideException, AlbumException {
+    public void supprimerAlbumParNom() throws AlbumIntrouvableException, DiscothequeVideException, SaisieInvalideException {
         scan.nextLine();
         String n= saisieNomDisque();
 
@@ -212,7 +215,7 @@ public class Controller {
 
 
 
-    public void rechercherAlbum() throws DiscothequeVideException, AlbumIntrouvableException, AlbumException {
+    public void rechercherAlbum() throws DiscothequeVideException, AlbumIntrouvableException, SaisieInvalideException {
         scan.nextLine();
         String n= saisieNomDisque();
 
