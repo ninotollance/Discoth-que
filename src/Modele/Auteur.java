@@ -28,9 +28,6 @@ public class Auteur {
 
     @Override
     public String toString() {
-        return "Auteur{" +
-                "nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                '}';
+        return this.nom + " " + this.prenom;
     }
 }

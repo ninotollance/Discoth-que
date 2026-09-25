@@ -70,8 +70,10 @@ public class Controller {
         return type;
     }
 
+
     public int saisieTailleVinyle() throws SaisieInvalideException {
         System.out.print("saisissez la taille du vinyle (17, 25 ou 30):");
+      
         int taille = scan.nextInt();
         scan.nextLine();
         if (taille != 17 && taille != 25 && taille != 30) {
