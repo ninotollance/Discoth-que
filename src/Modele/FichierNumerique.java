@@ -40,4 +40,8 @@ public class FichierNumerique extends Album {
     public void setDuree(int duree) {
         this.duree = duree;
     }
+
+    public String getSupport() {
+        return "Fichier Numérique";
+    }
 }

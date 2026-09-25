@@ -30,4 +30,8 @@ public class CompactDisque extends Album {
     public void setType(String type) {
         this.type = type;
     }
+
+    public String getSupport() {
+        return "CD";
+    }
 }

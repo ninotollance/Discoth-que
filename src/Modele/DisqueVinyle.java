@@ -41,4 +41,8 @@ public class DisqueVinyle extends Album {
                 ", quantite=" + quantite +
                 '}';*/
     }
+
+    public String getSupport() {
+        return "Disque vinyle";
+    }
 }
