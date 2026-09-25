@@ -40,4 +40,15 @@ public class FichierNumerique extends Album {
     public void setDuree(int duree) {
         this.duree = duree;
     }
+
+    @Override
+    public String toString() {
+        return  "Le vinyle tours "  + super.toString();
+        /**return "Album{" +
+         "nom='" + nom + '\'' +
+         ", auteur=" + auteur +
+         ", annee=" + annee +
+         ", quantite=" + quantite +
+         '}';*/
+    }
 }

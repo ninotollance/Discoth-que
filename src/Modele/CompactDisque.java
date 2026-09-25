@@ -30,4 +30,15 @@ public class CompactDisque extends Album {
     public void setType(String type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return  this.getSupport() + super.toString();
+        /**return "Album{" +
+         "nom='" + nom + '\'' +
+         ", auteur=" + auteur +
+         ", annee=" + annee +
+         ", quantite=" + quantite +
+         '}';*/
+    }
 }

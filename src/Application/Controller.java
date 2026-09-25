@@ -6,6 +6,7 @@ import Modele.Abstract.Album;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class Controller {
@@ -73,7 +74,7 @@ public class Controller {
 
     public int saisieTailleVinyle() throws SaisieInvalideException {
         System.out.print("saisissez la taille du vinyle (17, 25 ou 30):");
-      
+
         int taille = scan.nextInt();
         scan.nextLine();
         if (taille != 17 && taille != 25 && taille != 30) {
