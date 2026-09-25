@@ -1,11 +1,13 @@
 import Application.Controller;
 import Exceptions.*;
 
+import java.util.InputMismatchException;
+
 public class Main {
     public static void main(String[] args) {
 
         Controller c = new Controller();
-        int choix = 0;
+        int choix = -1;
 
         do {
             try {
@@ -34,9 +36,9 @@ public class Main {
                 }
 
                 System.out.println();
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-                System.out.println(e.getClass());
+            } catch (DiscothequeVideException | AuteurException | AlbumException | DoublonException |
+                     InputMismatchException | AlbumIntrouvableException e) {
+                System.out.println("Erreur: " + e.getClass().getSimpleName());
             }
 
         } while (choix != 0);

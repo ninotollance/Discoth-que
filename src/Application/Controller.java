@@ -6,7 +6,6 @@ import Modele.Abstract.Album;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class Controller {
@@ -41,78 +40,81 @@ public class Controller {
         return a;
     }
 
-    public String saisieNomDisque() throws DisqueException {
+    public String saisieNomDisque() throws AlbumException {
         System.out.print("saisissez le nom de l'album:");
         String nom = scan.nextLine();
         if (nom.isEmpty()) {
-            throw new DisqueException("nom  de l'album  non saisi");
+            throw new AlbumException("nom  de l'album  non saisi");
         }
         return nom;
     }
 
-    public String saisieNumero() throws DisqueException {
+    public String saisieNumero() throws AlbumException {
         System.out.print("saisissez le numéro de série de l'album:");
         String numero = scan.nextLine();
         if (numero.isEmpty()) {
-            throw new DisqueException("numéro de série de l'album  non saisi");
+            throw new AlbumException("numéro de série de l'album  non saisi");
         }
         return numero;
     }
 
-    public String saisieType() throws DisqueException {
-        System.out.print("saisissez le type de l'album:");
+    public String saisieType() throws AlbumException {
+        System.out.print("saisissez le type du CD:");
         String type = scan.nextLine();
         if (type.isEmpty()) {
-            throw new DisqueException("type de l'album  non saisi");
+            throw new AlbumException("type du CD  non saisi");
         }
         return type;
     }
 
-    public int saisieTailleVinyle() throws DisqueException {
+    public int saisieTailleVinyle() throws AlbumException {
         System.out.print("saisissez le nom de l'album:");
         int taille = scan.nextInt();
         scan.nextLine();
         if (taille != 33 && taille != 45) {
-            throw new DisqueException("Taille du vinyle non valide, doit être 33 ou 45");
+            throw new AlbumException("Taille du vinyle non valide, doit être 33 ou 45");
         }
         return taille;
     }
 
-    public String saisieFormat() throws DisqueException {
-        System.out.print("saisissez le format de l'album:");
+    public String saisieFormat() throws AlbumException {
+        System.out.print("saisissez le format du fichier:");
         String format = scan.nextLine();
         if (format.isEmpty()) {
-            throw new DisqueException("format de l'album  non saisi");
+            throw new AlbumException("format de fichier non saisi");
+        }
+        if (!format.equalsIgnoreCase("mp3") && !format.equalsIgnoreCase("flac") && !format.equalsIgnoreCase("wav")) {
+            throw new AlbumException("Format de fichier non valide, doit être mp3, flac ou wav");
         }
         return format;
     }
 
-    public double saisieTailleFichier() throws DisqueException {
+    public double saisieTailleFichier() throws AlbumException {
         System.out.print("saisissez la taille du fichier (en MO):");
         double taille = scan.nextDouble();
         scan.nextLine();
         if (taille <= 0) {
-            throw new DisqueException("taille de l'album  non saisi");
+            throw new AlbumException("taille de l'album  non saisi");
         }
         return taille;
     }
 
-    public int saisieDuree() throws DisqueException {
+    public int saisieDuree() throws AlbumException {
         System.out.print("saisissez la durée de l'album (en min):");
         int duree = scan.nextInt();
         scan.nextLine();
         if (duree < 0) {
-            throw new DisqueException("durée l'album  non saisi");
+            throw new AlbumException("durée l'album  non saisi");
         }
         return duree;
     }
 
-    public int saisieQuantite() throws DisqueException {
+    public int saisieQuantite() throws AlbumException {
         System.out.print("saisissez le nombre de disques/fichiers de l'album:");
         int duree = scan.nextInt();
         scan.nextLine();
         if (duree <= 0) {
-            throw new DisqueException("L'album ne peut pas avoir une quantité nulle ou négative");
+            throw new AlbumException("L'album ne peut pas avoir une quantité nulle ou négative");
         }
         return duree;
     }
@@ -128,7 +130,7 @@ public class Controller {
         return LocalDate.parse(date, formatter);
     }
 
-    public CompactDisque creerCD () throws AuteurException, DoublonException, DisqueException {
+    public CompactDisque creerCD () throws AuteurException, AlbumException {
         Auteur a = saisieAuteur();
         String nom = saisieNomDisque();
         LocalDate date = saisieDate();
@@ -141,7 +143,7 @@ public class Controller {
         return cd;
     }
 
-    public FichierNumerique creerFichierNumerique () throws AuteurException, DoublonException, DisqueException {
+    public FichierNumerique creerFichierNumerique () throws AuteurException, AlbumException {
         Auteur a = saisieAuteur();
         String nom = saisieNomDisque();
         LocalDate date = saisieDate();
@@ -155,7 +157,7 @@ public class Controller {
         return fichierNumerique;
     }
 
-    public DisqueVinyle creerDisqueVinyle () throws AuteurException, DoublonException, DisqueException {
+    public DisqueVinyle creerDisqueVinyle () throws AuteurException, AlbumException {
         Auteur a = saisieAuteur();
         String nom = saisieNomDisque();
         LocalDate date = saisieDate();
@@ -168,13 +170,9 @@ public class Controller {
         return disqueVinyle;
     }
 
-    public void ajouterAlbum() throws AuteurException, DisqueException, DoublonException {
-        //TODO saisie des informations de l'album avec les fonctions de saisie
-        //TODO demande de la CLASSE d'Album pour appeller les bonnes fonctions de saisie
-        //TODO Création de l'entité en conséquence
+    public void ajouterAlbum() throws AuteurException, AlbumException, DoublonException {
         System.out.println("Type d'album (1 = CD, 2 = Vinyle, 3 = Fichier numérique) : ");
         int choix = scan.nextInt();
-        scan.nextLine();
 
         Album created = null;
         switch (choix) {
@@ -201,7 +199,7 @@ public class Controller {
     }
 
     //TODO suppression album
-    public void supprimerAlbumParNom() throws AlbumIntrouvableException, DiscothequeVideException, DisqueException {
+    public void supprimerAlbumParNom() throws AlbumIntrouvableException, DiscothequeVideException, AlbumException {
         scan.nextLine();
         String n= saisieNomDisque();
 
@@ -210,7 +208,7 @@ public class Controller {
 
 
 
-    public void rechercherAlbum() throws DiscothequeVideException, AlbumIntrouvableException, DisqueException {
+    public void rechercherAlbum() throws DiscothequeVideException, AlbumIntrouvableException, AlbumException {
         scan.nextLine();
         String n= saisieNomDisque();
 
