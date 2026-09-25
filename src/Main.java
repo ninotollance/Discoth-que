@@ -1,6 +1,7 @@
 import Application.Controller;
 import Exceptions.*;
 
+import java.time.DateTimeException;
 import java.util.InputMismatchException;
 
 public class Main {
@@ -36,9 +37,12 @@ public class Main {
                 }
 
                 System.out.println();
-            } catch (DiscothequeVideException | AuteurException | AlbumException | DoublonException |
-                     InputMismatchException | AlbumIntrouvableException e) {
+            } catch (DiscothequeVideException | AuteurException | AlbumException | DoublonException | AlbumIntrouvableException | DateFormatException |
+                     DateTimeException e) {
+                System.out.println("Erreur: "+ e.getMessage() + " (" + e.getClass().getSimpleName() + ")");
+            } catch (InputMismatchException e){
                 System.out.println("Erreur: " + e.getClass().getSimpleName());
+                Controller.scan.nextLine();
             }
 
         } while (choix != 0);

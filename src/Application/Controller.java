@@ -72,6 +72,7 @@ public class Controller {
         int taille = scan.nextInt();
         scan.nextLine();
         if (taille != 33 && taille != 45) {
+            scan.nextLine();
             throw new AlbumException("Taille du vinyle non valide, doit être 33 ou 45");
         }
         return taille;
@@ -94,6 +95,7 @@ public class Controller {
         double taille = scan.nextDouble();
         scan.nextLine();
         if (taille <= 0) {
+            scan.nextLine();
             throw new AlbumException("taille de l'album  non saisi");
         }
         return taille;
@@ -104,6 +106,7 @@ public class Controller {
         int duree = scan.nextInt();
         scan.nextLine();
         if (duree < 0) {
+            scan.nextLine();
             throw new AlbumException("durée l'album  non saisi");
         }
         return duree;
@@ -114,6 +117,7 @@ public class Controller {
         int duree = scan.nextInt();
         scan.nextLine();
         if (duree <= 0) {
+            scan.nextLine();
             throw new AlbumException("L'album ne peut pas avoir une quantité nulle ou négative");
         }
         return duree;
