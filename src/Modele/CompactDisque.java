@@ -34,4 +34,15 @@ public class CompactDisque extends Album {
     public String getSupport() {
         return "CD";
     }
+
+    @Override
+    public String toString() {
+        return this.getSupport() + " " + this.getNumero() + " " + this.getType() + " " + super.toString();
+        /**return "Album{" +
+         "nom='" + nom + '\'' +
+         ", auteur=" + auteur +
+         ", annee=" + annee +
+         ", quantite=" + quantite +
+         '}';*/
+    }
 }
