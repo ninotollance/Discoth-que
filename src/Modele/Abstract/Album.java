@@ -52,11 +52,6 @@ public abstract class Album {
 
     @Override
     public String toString() {
-        return "Album{" +
-                "nom='" + nom + '\'' +
-                ", auteur=" + auteur +
-                ", annee=" + annee +
-                ", quantite=" + quantite +
-                '}';
+        return nom + " de " + auteur + " sortie en " + annee + " avec " + quantite + " titre ";
     }
 }

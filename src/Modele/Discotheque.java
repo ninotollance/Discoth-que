@@ -81,7 +81,7 @@ public class Discotheque {
 
         } catch (DiscothequeVideException | AlbumIntrouvableException e) {
             discotheque.add(a);
-            System.out.println("Album ajouté avec succès");
+            System.out.println(a + "ajouté avec succès !");
             return;
         }
         throw new DoublonException("Cette album exciste déjà !");

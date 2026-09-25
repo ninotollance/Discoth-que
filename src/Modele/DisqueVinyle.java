@@ -30,4 +30,15 @@ public class DisqueVinyle extends Album {
     public void setType(int type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return  "Le vinyle " +  type + " tours "  + super.toString();
+        /**return "Album{" +
+                "nom='" + nom + '\'' +
+                ", auteur=" + auteur +
+                ", annee=" + annee +
+                ", quantite=" + quantite +
+                '}';*/
+    }
 }

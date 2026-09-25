@@ -69,7 +69,7 @@ public class Controller {
     }
 
     public int saisieTailleVinyle() throws DisqueException {
-        System.out.print("saisissez le nom de l'album:");
+        System.out.print("saisissez la taille du vinyle:");
         int taille = scan.nextInt();
         scan.nextLine();
         if (taille != 33 && taille != 45) {
@@ -174,7 +174,7 @@ public class Controller {
         //TODO Création de l'entité en conséquence
         System.out.println("Type d'album (1 = CD, 2 = Vinyle, 3 = Fichier numérique) : ");
         int choix = scan.nextInt();
-        scan.nextLine();
+        //scan.nextLine();
 
         Album created = null;
         switch (choix) {
